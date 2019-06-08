@@ -22,6 +22,7 @@ class PostsController < ApplicationController
   	redirect_to post_path(post.id)
   end
 
+
   private
 
   def post_params
