@@ -5,11 +5,73 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag    "https://use.fontawesome.com/releases/v5.6.1/css/all.css" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <strong class="navbar-brand">Bookers</strong>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarEexample">
+          <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+          <li>
+            <%= link_to user_path(current_user.id) do %>
+            <i class="fas fa-home"></i><%= "Home" %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_path do %>
+            <i class="fas fa-user"></i><%= "Users" %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to books_path do %>
+            <i class="fas fa-book"></i><%= "Books" %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fas fa-sign-out-alt"></i><%= "logout" %>
+            <% end %>
+          </li>
+          <% else %>
+          <li>
+            <%= link_to root_path do %>
+            <i class="fas fa-home"></i><%= "Home" %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "/home/about" do %>
+            <i class="fas fa-link"></i><%= "About" %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path do %>
+            <i class="fas fa-edit"></i><%= "sign up" %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path do %>
+            <i class="fas fa-sign-in-alt"></i> <%= "login" %>
+            <% end %>
+          </li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
+    <footer></footer>
   </body>
 </html>
